@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plants Bloom - NASA Investigation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f8f5;
+    }
+    header {
+      background: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    header img {
+      width: 80px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+    nav {
+      background: #006400;
+      overflow: hidden;
+    }
+    nav a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      background: #ddd;
+      color: black;
+    }
+    section {
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
+    }
+    footer {
+      background: #003366;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    .center-img {
+      display: block;
+      margin: auto;
+      max-width: 80%;
+      border-radius: 10px;
+    }
+    .btn {
+      background: #006400;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #009900;
+    }
+    .output {
+      margin-top: 20px;
+      background: #f8fff9;
+      border-left: 5px solid #006400;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .map-placeholder, .pollinator-img {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .map-placeholder iframe {
+      width: 90%;
+      height: 300px;
+      border-radius: 10px;
+      border: none;
+    }
+    .pollinator-img img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      box-shadow: 0px 3px 8px rgba(0,0,0,0.3);
+    }
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .team-member {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+    }
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg" alt="NASA Logo">
+    <h1>🌱 Plants Bloom - NASA Investigation</h1>
+    <p>Monitoring Plant Growth & Providing Solutions</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#investigation">Investigation</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#team">Team Members</a>
+  </nav>
+
+  <section id="home">
+    <h2>Welcome</h2>
+    <p>This project focuses on how NASA investigates and monitors plant blooming in space and on Earth. 
+       It provides solutions for improving plant growth using technology and research.</p>
+    <img class="center-img" src="C:\Users\nanth\Downloads\plant in space.jpg" width="500px" alt="Plants in Space">
+  </section>
+
+  <section id="about">
+    <h2>About the Project</h2>
+    <div class="card">
+      <p>NASA has been experimenting with growing plants in space to support future space missions. 
+         Studying how plants bloom under zero-gravity, radiation, and controlled environments helps us 
+         find solutions for sustainable food production on Earth and beyond.</p>
+    </div>
+  </section>
+
+  <section id="investigation">
+    <h2>Investigation & Bloom Analysis</h2>
+    <div class="card">
+      <form id="bloomForm">
+        <label>Species Name:</label><br>
+        <input type="text" id="species" required><br><br>
+
+        <label>Region:</label><br>
+        <input type="text" id="region" placeholder="e.g., Tamil Nadu, India" required><br><br>
+
+        <label>Start Date:</label><br>
+        <input type="date" id="startDate" required><br><br>
+
+        <label>End Date:</label><br>
+        <input type="date" id="endDate" required><br><br>
+
+        <label>Species Type:</label><br>
+        <select id="type">
+          <option value="Flowering">Flowering Species</option>
+          <option value="Non-Flowering">Other Species</option>
+        </select><br><br>
+
+        <label>Pollination Type:</label><br>
+        <select id="pollination">
+          <option value="Bee">Bee Pollination</option>
+          <option value="Wind">Wind Pollination</option>
+          <option value="Bird">Bird Pollination</option>
+          <option value="Insect">Insect Pollination</option>
+        </select><br><br>
+
+        <button type="submit" class="btn">Analyze Bloom</button>
+      </form>
+    </div>
+
+    <div id="output" class="output" style="display:none;">
+      <h3>🌸 Analysis Results</h3>
+      <p><b>Current Blooming Species:</b> <span id="outSpecies"></span></p>
+      <p><b>Average Bloom Date:</b> <span id="outAvgDate"></span></p>
+      <p><b>Vegetation Shift:</b> <span id="outShift"></span></p>
+      <p><b>Pollinator Visits:</b> <span id="outVisits"></span></p>
+
+      <div class="map-placeholder">
+        <h4>🗺 Region Map View</h4>
+        <iframe id="mapFrame" loading="lazy"></iframe>
+      </div>
+
+      <div class="pollinator-img">
+        <h4>🐝 Pollinator Image</h4>
+        <img id="pollinatorImg" src="" alt="Pollinator Image">
+      </div>
+    </div>
+  </section>
+
+  <section id="solutions">
+    <h2>Proposed Solutions</h2>
+    <div class="card">
+      <h3>🌍 On Earth</h3>
+      <p>Using AI-driven monitoring systems to improve crop yield and prevent food shortage.</p>
+    </div>
+    <div class="card">
+      <h3>🚀 In Space</h3>
+      <p>Designing hydroponic and aeroponic systems to grow plants for astronauts on long missions.</p>
+    </div>
+  </section>
+
+  <section id="team">
+    <h2>👨‍💻 Team Members</h2>
+    <div class="team">
+      <div class="team-member">
+        <img src="c:\Users\nanth\Downloads\tmlead.jpg" alt="Member">
+        <p><b>Role:</b> Project Leader</p>
+        <p>Coordinates and oversees the development of the entire NASA Bloom mission.</p>
+      </div>
+      <div class="team-member">
+        <img src="c:\Users\nanth\Downloads\reasearch analyst.jpg" alt="Member">
+        <p><b>Role:</b> Research Analyst</p>
+        <p>Focuses on data collection and analysis of plant blooming and growth conditions.</p>
+      </div>
+      <div class="team-member">
+        <img src="c:\Users\nanth\Downloads\sft dev1.jpg" alt="Member">
+        <p><b>Role:</b> Software Developer</p>
+        <p>Builds and maintains the digital platform for bloom data visualization.</p>
+      </div>
+      <div class="team-member">
+        <img src="c:\Users\nanth\Downloads\soft dv2.jpg" alt="Member">
+        <p><b>Role:</b>Software Developer</p>
+        <p>Builds and maintains the digital platform for bloom data visualization.</p>
+      </div>
+      <div class="team-member">
+        <img src="c:\Users\nanth\Downloads\designer 1.jpg" alt="Member">
+        <p><b>Role:</b>Designer</p>
+        <p>Designs user-friendly and visually engaging NASA-style layouts.</p>
+      </div>
+      <div class="team-member">
+        <img src="c:\Users\nanth\Downloads\desg2.jpg" alt="Member">
+        <p><b>Role:</b>Designer</p>
+        <p>Designs user-friendly and visually engaging NASA-style layouts.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Plants Bloom NASA Project | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    document.getElementById('bloomForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const species = document.getElementById('species').value;
+      const region = document.getElementById('region').value;
+      const startDate = new Date(document.getElementById('startDate').value);
+      const endDate = new Date(document.getElementById('endDate').value);
+      const type = document.getElementById('type').value;
+      const pollination = document.getElementById('pollination').value;
+
+      const avgDate = new Date((startDate.getTime() + endDate.getTime()) / 2);
+      const avgDateStr = avgDate.toDateString();
+
+      const shift = (Math.random() * 10 - 5).toFixed(2) + " days";
+      const visits = Math.floor(Math.random() * 50 + 10);
+
+      document.getElementById('outSpecies').textContent = species + " (" + type + ")";
+      document.getElementById('outAvgDate').textContent = avgDateStr;
+      document.getElementById('outShift').textContent = shift;
+      document.getElementById('outVisits').textContent = visits + " visits recorded";
+
+      const mapFrame = document.getElementById('mapFrame');
+      mapFrame.src = "https://www.google.com/maps?q=" + encodeURIComponent(region) + "&output=embed";
+
+      const pollinatorImg = document.getElementById('pollinatorImg');
+      let imgSrc = "";
+      switch (pollination) {
+        case "Bee": imgSrc = "https://upload.wikimedia.org/wikipedia/commons/4/4d/Honeybee_landing_on_flower.jpg"; break;
+        case "Wind": imgSrc = "https://upload.wikimedia.org/wikipedia/commons/8/84/Wind_pollination_grass.jpg"; break;
+        case "Bird": imgSrc = "https://upload.wikimedia.org/wikipedia/commons/f/f9/Hummingbird_pollination.jpg"; break;
+        case "Insect": imgSrc = "https://upload.wikimedia.org/wikipedia/commons/9/98/Butterfly_pollination.jpg"; break;
+      }
+      pollinatorImg.src = imgSrc;
+
+      document.getElementById('output').style.display = "block";
+      alert("🌼 Analysis Completed! Great work team — NASA would be proud 🚀");
+    });
+  </script>
+
+</body>
+</html>
